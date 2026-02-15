@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pa project ni maam 😁</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class = "container">
+    <h3 id="titleText" class="title">Paano yumaman ng walang ginagawa?</h3>
+    <p class = "persuade"> Gusto mo bang yumaman ng walang ginagawa? Parang magic lang, di mo na kailangan magaral at trabaho, na para bang ang pera, biglang lalabas sa wallet mo na parang may sariling buhay! kung inaasam mo ito, pindutin mo ang button sa baba upang masagot na ang inyong mga katanungan. </p>
+    <p class = "command"> Click the button to find out more!</p>
+    <button id="popupButton" onclick="playAudio()" type="button" class="popupbutton">Click Me</button>
+</div>
+
+
+<div id="popupSquare" class="square">
+  <img src="Text1.png"  alt="Popup Image" alt = "Text">
+    <div> 
+            
+            <div class="cats"> 
+        
+                <img src="cat1.png" alt="Popup Image" >
+                <img src="cat-spinning.gif" onclick="showConfetti()" alt="popupButton">
+                <img src="cat2.png" alt="Popup Image" >
+            
+            </div>
+
+         
+    </div>
+    
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+const audio = new Audio('Romcom.mp3'); 
+
+function playAudio() {
+
+
+    audio.currentTime = 0; 
+    audio.play();         
+    showSquare(); 
+}
+function showSquare() {
+
+    document.getElementById("titleText").style.display = "none";
+    document.getElementById("popupSquare").classList.add("show");
+    document.getElementById("popupButton").classList.add("remove");
+    document.querySelector(".container").classList.add("remove");
+    changeBG();
+    fallingpetals();
+}
+function showConfetti() {
+
+    
+    confetti({
+
+        particleCount: 1000,
+        spread: 300,
+        origin: { y: 0.6 },
+        decay: 0.9,
+         colors: ['	#ffffff', '#ffeef7', '#fdd2e8', '#ffb7dd', '#fd9ed0']
+    });
+}
+function fallingpetals() {
+
+    for (let i = 0; i < 200; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("petal");
+
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.backgroundColor = randomColor();
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 500000);
+    }
+}
+function randomColor() {
+
+    const colors = ["#ffffff", "#ffeef7", "#fdd2e8", "#ffb7dd", "#fd9ed0"];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+ function changeBG() {
+      document.body.classList.add("new-bg");
+    }
+
+</script>
+
+</body>
+</html>
